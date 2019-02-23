@@ -1,5 +1,5 @@
 const { routes: { createSqlRestRoutes } } = require('sql-wizard')
 
 module.exports = (server, pool) => {
-  createSqlRestRoutes(server, pool, '/api/kittens', 'kitten', { /* place custom handlers here */ })
+  createSqlRestRoutes(server, pool, '/api/kittens', 'kitten', { /* place custom REST handlers here */ })
 }
