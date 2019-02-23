@@ -14,7 +14,7 @@ const completeConfig = {
   },
 
   production: {
-    appUrl: `https://${appName}.herokuapp.com/`
+    appUrl: `https://nextjs-sql-rest-api.herokuapp.com/`
   }
 
 }
