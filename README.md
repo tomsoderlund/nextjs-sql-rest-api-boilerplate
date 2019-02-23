@@ -12,7 +12,7 @@ Lightning fast, all JavaScript.
 
 ## Demo
 
-See [**nextjs-sql-rest-api-boilerplate** running on Heroku here](https://nextjs-sql-rest-api-boilerplate.herokuapp.com/).
+See [**nextjs-sql-rest-api-boilerplate** running on Heroku here](https://nextjs-sql-rest-api.herokuapp.com/).
 
 ![nextjs-sql-rest-api-boilerplate demo on Heroku](docs/demo.gif)
 
