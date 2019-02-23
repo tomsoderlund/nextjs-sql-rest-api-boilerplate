@@ -1,0 +1,56 @@
+require('dotenv').config()
+
+const express = require('express')
+const server = express()
+const bodyParser = require('body-parser')
+const { Pool } = require('pg')
+const glob = require('glob')
+
+const next = require('next')
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const defaultRequestHandler = app.getRequestHandler()
+
+const { config } = require('../config/config')
+
+app.prepare().then(() => {
+  // Parse application/x-www-form-urlencoded
+  server.use(bodyParser.urlencoded({ extended: false }))
+  // Parse application/json
+  server.use(bodyParser.json())
+
+  // Allows for cross origin domain request:
+  server.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+    next()
+  })
+
+  // Postgres
+  const pool = new Pool({ connectionString: config.databaseUrl })
+
+  // API routes
+  const rootPath = require('path').join(__dirname, '/..')
+  glob.sync(rootPath + '/server/api/*.js').forEach(controllerPath => {
+    if (!controllerPath.includes('.test.js')) require(controllerPath)(server, pool)
+  })
+
+  // Next.js request handling
+  const customRequestHandler = (page, req, res) => {
+    // Both query and params will be available in getInitialProps({query})
+    const mergedQuery = Object.assign({}, req.query, req.params)
+    app.render(req, res, page, mergedQuery)
+  }
+
+  // Routes
+  server.get('/companies/:companyId/edit', customRequestHandler.bind(undefined, '/companyEdit'))
+  server.get('/people/:personId/edit', customRequestHandler.bind(undefined, '/personEdit'))
+  server.get('/people/:personId', customRequestHandler.bind(undefined, '/person'))
+  server.get('/', customRequestHandler.bind(undefined, '/'))
+  server.get('*', defaultRequestHandler)
+
+  server.listen(config.serverPort, function () {
+    console.log(`App running on http://localhost:${config.serverPort}/`)
+  })
+})
