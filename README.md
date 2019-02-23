@@ -27,6 +27,15 @@ Install dependencies:
 	cd [MY_APP]
 	yarn  # or npm install
 
+Install Postgres and set up the database:
+
+	psql postgres
+	CREATE DATABASE "nextjs-sql-rest-api-boilerplate";  -- You can also use \connect to connect to existing database
+	CREATE TABLE kitten (id serial, name text);  -- Create a blank table
+	INSERT INTO kitten (name) VALUES ('Sphynxie');  -- Add example data
+	SELECT * FROM kitten;  -- Check data exists
+	\q
+
 Start it by doing the following:
 
 	export DATABASE_URL=[your Postgres URL]

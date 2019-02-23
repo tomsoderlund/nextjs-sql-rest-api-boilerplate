@@ -1,4 +1,4 @@
-const appName = 'my-amazing-app'
+const appName = 'nextjs-sql-rest-api-boilerplate'
 const serverPort = process.env.PORT || 3123
 
 const completeConfig = {
