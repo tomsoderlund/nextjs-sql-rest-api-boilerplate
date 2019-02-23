@@ -4,6 +4,7 @@ const serverPort = process.env.PORT || 3123
 const completeConfig = {
 
   default: {
+    appName,
     serverPort,
     databaseUrl: process.env.DATABASE_URL || `postgresql://localhost/${appName}`
   },

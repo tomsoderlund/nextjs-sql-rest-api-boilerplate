@@ -1,15 +1,16 @@
 require('dotenv').config()
 
-const express = require('express')
-const server = express()
 const bodyParser = require('body-parser')
-const { Pool } = require('pg')
 const glob = require('glob')
-
 const next = require('next')
+const server = require('express')()
+const { Pool } = require('pg')
+
+const routes = require('./routes')
+
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const defaultRequestHandler = app.getRequestHandler()
+const routerHandler = routes.getRequestHandler(app)
 
 const { config } = require('../config/config')
 
@@ -30,27 +31,14 @@ app.prepare().then(() => {
   // Postgres
   const pool = new Pool({ connectionString: config.databaseUrl })
 
-  // API routes
+  // REST API routes
   const rootPath = require('path').join(__dirname, '/..')
   glob.sync(rootPath + '/server/api/*.js').forEach(controllerPath => {
     if (!controllerPath.includes('.test.js')) require(controllerPath)(server, pool)
   })
 
-  // Next.js request handling
-  const customRequestHandler = (page, req, res) => {
-    // Both query and params will be available in getInitialProps({query})
-    const mergedQuery = Object.assign({}, req.query, req.params)
-    app.render(req, res, page, mergedQuery)
-  }
+  // Next.js page routes
+  server.get('*', routerHandler)
 
-  // Routes
-  server.get('/companies/:companyId/edit', customRequestHandler.bind(undefined, '/companyEdit'))
-  server.get('/people/:personId/edit', customRequestHandler.bind(undefined, '/personEdit'))
-  server.get('/people/:personId', customRequestHandler.bind(undefined, '/person'))
-  server.get('/', customRequestHandler.bind(undefined, '/'))
-  server.get('*', defaultRequestHandler)
-
-  server.listen(config.serverPort, function () {
-    console.log(`App running on http://localhost:${config.serverPort}/`)
-  })
+  server.listen(config.serverPort, () => console.log(`${config.appName} running on http://localhost:${config.serverPort}/`))
 })

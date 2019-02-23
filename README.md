@@ -5,6 +5,11 @@
 This is a great starting point for a any project where you want **React + Redux** (with server-side rendering, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Express/Postgres** as a REST API backend.
 Lightning fast, all JavaScript.
 
+* Flexible configuration with `config/config.js` and `.env` files
+* Flexible routing with `next-routes` (see `server/routes.js`)
+* Hot reloading with `nodemon`
+* JWT authentication (coming)
+
 ## Demo
 
 See [**nextjs-sql-rest-api-boilerplate** running on Heroku here](https://nextjs-sql-rest-api-boilerplate.herokuapp.com/).
