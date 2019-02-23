@@ -7,7 +7,7 @@ Lightning fast, all JavaScript.
 
 ## Demo
 
-See [**nextjs-sql-rest-api-boilerplate** running on Heroku here](https://nextjs-express-mongoose.herokuapp.com/).
+See [**nextjs-sql-rest-api-boilerplate** running on Heroku here](https://nextjs-sql-rest-api-boilerplate.herokuapp.com/).
 
 ![nextjs-sql-rest-api-boilerplate demo on Heroku](docs/demo.gif)
 
@@ -42,7 +42,7 @@ You have your API server running at `http://localhost:3123/api/kittens`
 ### Deploying on Heroku
 
 	heroku create [MY_APP]
-	heroku addons:add postgres
+	heroku addons:create heroku-postgresql:hobby-dev
 	git push heroku master
 
 ### Deploying on Now
