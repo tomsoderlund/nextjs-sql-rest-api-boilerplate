@@ -2,14 +2,17 @@
 
 ## Why is this awesome?
 
-This is a great starting point for a any project where you want **React + Redux** (with server-side rendering, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Express/Postgres** as a REST API backend.
-Lightning fast, all JavaScript.
+This is a great starting point for a any project where you want **React + Redux** (with server-side rendering, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Express/Postgres SQL** as a REST API backend.
+_Lightning fast, all JavaScript._
 
-* Simple REST routes with [`sql-wizard`](https://github.com/tomsoderlund/sql-wizard)
-* Flexible client-side routing with `next-routes` (see `server/routes.js`)
-* Flexible configuration with `config/config.js` and `.env` files
-* Hot reloading with `nodemon`
-* JWT authentication (coming)
+* Simple REST API routes with [`sql-wizard`](https://github.com/tomsoderlund/sql-wizard).
+* Redux REST support with `redux-api` and `next-redux-wrapper`.
+* Flexible client-side routing with `next-routes` (see `server/routes.js`).
+* Flexible configuration with `config/config.js` and `.env` file.
+* Hot reloading with `nodemon`.
+* Testing with Jasmine.
+* Code formatting and linting with StandardJS.
+* JWT authentication for client-server communication (coming).
 
 ## Demo
 
@@ -30,7 +33,8 @@ Install dependencies:
 
 Install Postgres and set up the database:
 
-	psql postgres
+	psql postgres  # Start the Postgres command-line client
+	
 	CREATE DATABASE "nextjs-sql-rest-api-boilerplate";  -- You can also use \connect to connect to existing database
 	CREATE TABLE kitten (id serial, name text);  -- Create a blank table
 	INSERT INTO kitten (name) VALUES ('Sphynxie');  -- Add example data
@@ -39,7 +43,7 @@ Install Postgres and set up the database:
 
 Start it by doing the following:
 
-	export DATABASE_URL=[your Postgres URL]
+	export DATABASE_URL=[your Postgres URL]  # Or use a .env file
 	yarn dev
 
 In production:
@@ -47,9 +51,9 @@ In production:
 	yarn build
 	yarn start
 
-If you navigate to `http://localhost:3123/` you will see a [Next.js](https://github.com/zeit/next.js) page with a list of kittens (or an empty list if you haven't added one).
+If you navigate to `http://localhost:3123/` you will see a [Next.js](https://github.com/zeit/next.js) page with a list of kittens (or an empty list if you haven’t added one).
 
-You have your API server running at `http://localhost:3123/api/kittens`
+Your API server is running at `http://localhost:3123/api/kittens`
 
 
 ## Deploying
