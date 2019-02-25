@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { get } from 'lodash'
 import fetch from 'isomorphic-fetch'
 import reduxApi, { transformers } from 'redux-api'
 import adapterFetch from 'redux-api/lib/adapters/fetch'
@@ -12,17 +12,17 @@ const jsonOptions = {
   }
 }
 
-const apiTransformer = function (data, prevData, action) {
-  const actionMethod = _.get(action, 'request.params.method')
+const apiTransformer = function (newItem, oldItems, action) {
+  const actionMethod = get(action, 'request.params.method')
   switch (actionMethod) {
     case 'POST':
-      return [...prevData, data]
+      return [...oldItems, newItem]
     case 'PUT':
-      return prevData.map(oldData => oldData.id === data.id ? data : oldData)
+      return oldItems.map(oldItem => oldItem.id === newItem.id ? Object.assign({}, oldItem, newItem) : oldItem)
     case 'DELETE':
-      return _(prevData).filter(oldData => oldData.id === data.id ? undefined : oldData).compact().value()
+      return oldItems.filter(oldItem => oldItem.id !== newItem.id)
     default:
-      return transformers.array.call(this, data, prevData, action)
+      return transformers.array.call(this, newItem, oldItems, action)
   }
 }
 

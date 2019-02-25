@@ -28,7 +28,7 @@ app.prepare().then(() => {
     next()
   })
 
-  // Postgres
+  // Postgres (pg)
   const pool = new Pool({ connectionString: config.databaseUrl })
 
   // REST API routes

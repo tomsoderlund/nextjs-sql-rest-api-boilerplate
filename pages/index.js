@@ -10,12 +10,12 @@ class IndexPage extends Component {
   static async getInitialProps ({ store, isServer, pathname, query }) {
     // Get all kittens
     const kittens = await store.dispatch(reduxApi.actions.kittens.sync())
-    return { kittens }
+    return { kittens, query }
   }
 
   constructor (props) {
     super(props)
-    this.state = { name: '' }
+    this.state = { name: '', inProgress: false }
   }
 
   handleChangeInputText (event) {
@@ -25,7 +25,7 @@ class IndexPage extends Component {
   handleAdd (event) {
     // Progress indicator
     this.setState({ inProgress: true })
-    const callbackWhenDone = () => this.setState({ name: '', inProgress: null })
+    const callbackWhenDone = () => this.setState({ name: '', inProgress: false })
 
     // Actual data request
     const newKitten = {
@@ -37,10 +37,11 @@ class IndexPage extends Component {
   handleUpdate (index, kittenId, event) {
     // Progress indicator
     this.setState({ inProgress: kittenId })
-    const callbackWhenDone = () => this.setState({ inProgress: null })
+    const callbackWhenDone = () => this.setState({ inProgress: false })
 
     // Actual data request
     const newKitten = {
+      id: kittenId,
       name: window.prompt('New name?')
     }
     this.props.dispatch(reduxApi.actions.kittens.put({ id: kittenId }, { body: JSON.stringify(newKitten) }, callbackWhenDone))
@@ -49,14 +50,14 @@ class IndexPage extends Component {
   handleDelete (index, kittenId, event) {
     // Progress indicator
     this.setState({ inProgress: kittenId })
-    const callbackWhenDone = () => this.setState({ inProgress: null })
+    const callbackWhenDone = () => this.setState({ inProgress: false })
 
     // Actual data request
     this.props.dispatch(reduxApi.actions.kittens.delete({ id: kittenId }, callbackWhenDone))
   }
 
   render () {
-    const { kittens } = this.props// dd
+    const { kittens } = this.props
 
     const kittenList = kittens.data
       ? kittens.data.map((kitten, index) => <KittenItem
@@ -71,8 +72,8 @@ class IndexPage extends Component {
 
     return <main>
       <PageHead
-        title='Next.js (React) + Express REST API + MongoDB + Mongoose-Crudify boilerplate'
-        description='Demo of nextjs-express-mongoose-crudify-boilerplate'
+        title='Next.js (React) + Redux + Express REST API + Postgres SQL boilerplate'
+        description='Demo of nextjs-sql-rest-api-boilerplate'
       />
 
       <h1>Kittens</h1>
@@ -89,6 +90,8 @@ class IndexPage extends Component {
       </div>
 
       <h2>Routing</h2>
+
+      Current: /{this.props.query.slug}
 
       <ul>
         <li><Link route='/about'><a>About</a></Link></li>

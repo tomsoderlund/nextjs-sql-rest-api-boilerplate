@@ -1,5 +1,5 @@
 const KittenItem = ({ kitten, index, inProgress, handleUpdate, handleDelete }) => (
-  <div className={inProgress === kitten.id ? 'inProgress' : ''}>
+  <div className={inProgress === kitten.id ? 'inProgress' : ''} title={`id: ${kitten.id}`}>
     {kitten.name}
     <a className='update' onClick={handleUpdate.bind(this, index, kitten.id)}>Update</a>
     <a className='delete' onClick={handleDelete.bind(this, index, kitten.id)}>Delete</a>
@@ -16,6 +16,7 @@ const KittenItem = ({ kitten, index, inProgress, handleUpdate, handleDelete }) =
       a.delete {
         color: tomato;
       }
+
       .inProgress {
         opacity: 0.3;
       }
