@@ -22,35 +22,28 @@ class IndexPage extends Component {
   }
 
   handleAdd (event) {
-    // Progress indicator
-    this.setState({ inProgress: true })
+    const { name } = this.state
+    if (!name) return
     const callbackWhenDone = () => this.setState({ name: '', inProgress: false })
-
+    this.setState({ inProgress: true })
     // Actual data request
-    const newKitten = {
-      name: this.state.name
-    }
+    const newKitten = { name }
     this.props.dispatch(reduxApi.actions.kittens.post({}, { body: JSON.stringify(newKitten) }, callbackWhenDone))
   }
 
   handleUpdate (index, kittenId, event) {
-    // Progress indicator
-    this.setState({ inProgress: kittenId })
+    const name = window.prompt('New name?')
+    if (!name) return
     const callbackWhenDone = () => this.setState({ inProgress: false })
-
+    this.setState({ inProgress: kittenId })
     // Actual data request
-    const newKitten = {
-      id: kittenId,
-      name: window.prompt('New name?')
-    }
+    const newKitten = { id: kittenId, name }
     this.props.dispatch(reduxApi.actions.kittens.put({ id: kittenId }, { body: JSON.stringify(newKitten) }, callbackWhenDone))
   }
 
   handleDelete (index, kittenId, event) {
-    // Progress indicator
-    this.setState({ inProgress: kittenId })
     const callbackWhenDone = () => this.setState({ inProgress: false })
-
+    this.setState({ inProgress: kittenId })
     // Actual data request
     this.props.dispatch(reduxApi.actions.kittens.delete({ id: kittenId }, callbackWhenDone))
   }
