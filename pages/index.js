@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from '../server/routes.js'
-import reduxApi from '../redux/reduxApi.js'
-import { withKittens } from '../redux/kittenProvider.js'
+import reduxApi, { withKittens } from '../redux/reduxApi.js'
 
 import PageHead from '../components/PageHead'
 import KittenItem from '../components/KittenItem'

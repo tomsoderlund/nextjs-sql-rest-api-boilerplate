@@ -1,10 +1,11 @@
 import { get } from 'lodash'
 import fetch from 'isomorphic-fetch'
+
 import reduxApi, { transformers } from 'redux-api'
 import adapterFetch from 'redux-api/lib/adapters/fetch'
-// import { Provider, connect } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import { connect } from 'react-redux'
 
 const { config } = require('../config/config')
 
@@ -66,5 +67,19 @@ const thisReduxApi = reduxApi({
 
 export default thisReduxApi
 
-export const createStoreWithThunkMiddleware = applyMiddleware(thunkMiddleware)(createStore)
+const createStoreWithThunkMiddleware = applyMiddleware(thunkMiddleware)(createStore)
 export const makeStore = (reduxState, enhancer) => createStoreWithThunkMiddleware(combineReducers(thisReduxApi.reducers), reduxState)
+
+// endpointNames: Use reduxApi endpoint names here
+const mapStateToProps = (endpointNames, reduxState) => {
+  let props = {}
+  for (let i in endpointNames) {
+    props[endpointNames[i]] = reduxState[endpointNames[i]]
+    props[`${endpointNames[i]}Actions`] = thisReduxApi.actions[endpointNames[i]]
+  }
+  return props
+}
+
+export const withReduxEndpoints = (PageComponent, endpointNames) => connect(mapStateToProps.bind(undefined, endpointNames))(PageComponent)
+// Define custom endpoints/providers here:
+export const withKittens = PageComponent => withReduxEndpoints(PageComponent, ['kittens'])
