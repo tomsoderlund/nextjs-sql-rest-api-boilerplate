@@ -1,5 +1,7 @@
 # Next.js (React) + Redux + Express REST API + Postgres SQL boilerplate
 
+_You want MongoDB database instead of Postgres SQL? Check out https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate instead._
+
 ## Why is this awesome?
 
 This is a great starting point for a any project where you want **React + Redux** (with server-side rendering, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Express/Postgres SQL** as a REST API backend.
