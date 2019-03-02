@@ -39,7 +39,7 @@ Install Postgres and set up the database:
 	
 	CREATE DATABASE "nextjs-sql-rest-api-boilerplate";  -- You can also use \connect to connect to existing database
 	CREATE TABLE kitten (id serial, name text);  -- Create a blank table
-	INSERT INTO kitten (name) VALUES ('Sphynxie');  -- Add example data
+	INSERT INTO kitten (name) VALUES ('Pugget');  -- Add example data
 	SELECT * FROM kitten;  -- Check data exists
 	\q
 
