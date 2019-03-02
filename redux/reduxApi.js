@@ -67,4 +67,4 @@ const thisReduxApi = reduxApi({
 export default thisReduxApi
 
 export const createStoreWithThunkMiddleware = applyMiddleware(thunkMiddleware)(createStore)
-export const makeStore = (reduxState, enhancer) => createStoreWithThunkMiddleware(combineReducers(reduxApi.reducers), reduxState)
+export const makeStore = (reduxState, enhancer) => createStoreWithThunkMiddleware(combineReducers(thisReduxApi.reducers), reduxState)
