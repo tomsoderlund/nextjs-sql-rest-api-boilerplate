@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from '../server/routes.js'
+
 import reduxApi, { withKittens } from '../redux/reduxApi.js'
 
+import { Link } from '../server/routes.js'
 import PageHead from '../components/PageHead'
 import KittenItem from '../components/KittenItem'
 
@@ -82,9 +83,7 @@ class IndexPage extends Component {
       </div>
 
       <h2>Routing</h2>
-
-      Current: /{this.props.query.slug}
-
+      Current page slug: /{this.props.query.slug}
       <ul>
         <li><Link route='/about'><a>About</a></Link></li>
         <li><Link route='/more/contact'><a>Contact</a></Link></li>

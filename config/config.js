@@ -6,7 +6,12 @@ const completeConfig = {
   default: {
     appName,
     serverPort,
-    databaseUrl: process.env.DATABASE_URL || `postgresql://localhost/${appName}`
+    databaseUrl: process.env.DATABASE_URL || `postgresql://localhost/${appName}`,
+    jsonOptions: {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
   },
 
   development: {

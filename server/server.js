@@ -6,10 +6,10 @@ const next = require('next')
 const server = require('express')()
 const { Pool } = require('pg')
 
-const routes = require('./routes')
-
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
+
+const routes = require('./routes')
 const routerHandler = routes.getRequestHandler(app)
 
 const { config } = require('../config/config')
@@ -40,5 +40,6 @@ app.prepare().then(() => {
   // Next.js page routes
   server.get('*', routerHandler)
 
+  // Start server
   server.listen(config.serverPort, () => console.log(`${config.appName} running on http://localhost:${config.serverPort}/`))
 })

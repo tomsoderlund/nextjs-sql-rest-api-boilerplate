@@ -9,12 +9,6 @@ import { connect } from 'react-redux'
 
 const { config } = require('../config/config')
 
-const jsonOptions = {
-  headers: {
-    'Content-Type': 'application/json'
-  }
-}
-
 const apiTransformer = function (newItem, oldItems, action) {
   const actionMethod = get(action, 'request.params.method')
   switch (actionMethod) {
@@ -41,7 +35,7 @@ const thisReduxApi = reduxApi({
     crud: true, // Make CRUD actions: https://github.com/lexich/redux-api/blob/master/docs/DOCS.md#crud
 
     // base endpoint options `fetch(url, options)`
-    options: jsonOptions,
+    options: config.jsonOptions,
 
     // reducer (state, action) {
     //  console.log('reducer', action);

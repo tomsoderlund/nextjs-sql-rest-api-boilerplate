@@ -1,6 +1,6 @@
 {
   "name": "nextjs-sql-rest-api-boilerplate",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Next.js (React) + Redux + Express REST API + Postgres SQL boilerplate.",
   "author": "Tom Söderlund <tom@tomsoderlund.com>",
   "license": "ISC",
