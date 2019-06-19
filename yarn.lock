@@ -5227,10 +5227,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sql-wizard@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/sql-wizard/-/sql-wizard-1.0.2.tgz#770d9d1ee683c12ab87af1e84031a46320f00298"
-  integrity sha512-SdsRxyLQEk3uH8QG+/H4cXrx8mKYd5bmfEvB+Q030GeXM0Mscgc0o6vx25ExgquIY3SF5f4pNQnYv8mh83QCRQ==
+sql-wizard@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/sql-wizard/-/sql-wizard-1.0.11.tgz#0284eb5b0201f9c93f9796724ca6ed0bd615e0f9"
+  integrity sha512-fI5nB6J5P8kT5KLIoyPlMd8Wcc7bAjz+ipNCb+d84rt87muo4c/614HerBaAQkG7zW4yAIHAt6hdta8C/dqOHg==
 
 ssri@^6.0.1:
   version "6.0.1"
