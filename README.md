@@ -1,6 +1,12 @@
 # Next.js (React) + Redux + Express REST API + Postgres SQL boilerplate
 
-_You want MongoDB database instead of Postgres SQL? Check out [nextjs-express-mongoose-crudify-boilerplate](https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate) instead._
+_Note: this is my v2 boilerplate for React web apps. See also my [Firebase and React Hooks boilerplate](https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate) and [REST + MongoDB boilerplate](https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate)._
+
+## Support this project
+
+Did you or your company find `nextjs-sql-rest-api-boilerplate` useful? Please consider giving a small donation, it helps me spend more time on open-source projects:
+
+[![Support Tom on Ko-Fi.com](https://www.tomsoderlund.com/ko-fi_tomsoderlund_50.png)](https://ko-fi.com/tomsoderlund)
 
 ## Why is this awesome?
 
